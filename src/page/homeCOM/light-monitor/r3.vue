@@ -46,7 +46,7 @@
             // fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
             sources: [{
                 type: "application/x-mpegURL",//这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
-                src: "" //url地址
+                src: "https://sample-videos.com/video123/flv/720/big_buck_bunny_720p_1mb.flv" //url地址
             }],
             hls:true, //如果是播放m3u8必须加（需注释掉techOrder,不然会有报错）
             ///techOrder: ['flash'], //播放rtmp必须加
