@@ -1,14 +1,14 @@
 <template>
-<div class="loginbox"> 
+<div class="loginbox">
 <div class="boxbg">
-        <div class="title bgbg"><span>智慧综合杆运行态势总览</span></div>
+        <div class="title bgbg"><span>广西职业技术学院激光熔覆工作站</span></div>
         <i class="i1"></i>
         <i class="i2"></i>
         <i class="i3"></i>
-        <i class="i4"></i>   
-         
+        <i class="i4"></i>
+
         <div class="c flex flexc" style="top:80px;overflow-x: hidden; left:0; right:0; bottom:0;padding:20px; padding-right:80px;">
-            
+
              <el-form ref="form" :model="form" label-width="100px">
                 <el-form-item label="用户名">
                     <el-input size="medium" v-model="form.usercode"  @keyup.enter.native="onSubmit('form')" autofocus></el-input>
@@ -21,15 +21,15 @@
                     <!-- <el-button style="text-align: right;margin: 15px 0px;border-left-width: 110px;" type="text"  @click="showFileList"><u>工具下载</u></el-button> -->
                 </el-form-item>
             </el-form>
-  
-             
+
+
         </div>
 
         <div class="ts"> </div>
 
     </div>
 </div>
-    
+
 </template>
 
 <script>
@@ -44,7 +44,7 @@
       }
     },
     beforeRouteEnter(to,from,next){
-      next((vm)=>{ 
+      next((vm)=>{
         ///vm.path = from.path
       })
     },
@@ -52,9 +52,9 @@
         ///if(this.$store.state.login)this.$router.push({ path: '/admin' })
     },
     mounted () {
-        
+
     },
-   
+
     methods: {
       onSubmit() {
         this.loading = true;

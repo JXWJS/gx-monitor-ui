@@ -88,7 +88,7 @@ module.exports = (options = {}) => ({
         }
       }
     },
-    historyApiFallback: { 
+    historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname
     }
   },

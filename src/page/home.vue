@@ -1,17 +1,17 @@
 <template>
-   
+
    <div class="main" style="background-color: #000">
     <div id="homePage"  :style="'transform:scale('+h/1080+');transform-origin:50% 50%'">
        <light-monitor></light-monitor>
     </div>
-   </div>     
- 
+   </div>
+
 </template>
 
 
 
 <script>
-  import lightMonitor from "./homeCOM/light-monitor.vue" 
+  import lightMonitor from "./homeCOM/light-monitor.vue"
   export default {
     components: {
         lightMonitor
@@ -23,7 +23,7 @@
       }
     },
     methods: {
-      
+
     },
     mounted (){
       //console.log(document.body.clientHeight/1080)

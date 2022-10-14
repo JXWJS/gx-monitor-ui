@@ -7,10 +7,10 @@
         <i class="i4"></i>
       <div class="po"  v-if="show"><span style="padding-right:5px;">{{data.title}}</span></div>
         <div class="c flex ">
-            
+
              <video-player  class="video-player vjs-custom-skin" style="width:100%; height:100%"
-                ref="videoPlayer" 
-                :playsinline="true" 
+                ref="videoPlayer"
+                :playsinline="true"
                 :options="playerOptions"
                 autoplay
                 v-if="show"
@@ -20,9 +20,9 @@
     </div>
 </template>
 <script>
-    
+
     export default {
-       
+
         watch:{
             data(newValue,oldValue){
                 ///console.log(newValue.src)
@@ -57,10 +57,10 @@
         },
 
         methods: {
-    
+
         },
         mounted () {
-            
+
         },
     }
 </script>

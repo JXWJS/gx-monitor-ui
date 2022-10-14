@@ -15,6 +15,7 @@
     "element-ui": "^2.12.0",
     "file-saver": "^2.0.2",
     "socket.io-client": "^2.2.0",
+    "three": "^0.145.0",
     "v-charts": "^1.19.0",
     "videojs-contrib-hls": "^5.15.0",
     "vue": "^2.5.16",
