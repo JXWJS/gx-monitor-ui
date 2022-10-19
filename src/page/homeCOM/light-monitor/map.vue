@@ -34,10 +34,10 @@ export default( {
   methods: {
     init () {
       let this_ = this
-      this_.container = document.createElement('div',{left: '300px'})
+      this_.container = document.createElement('div')
 
       this_.camera = new THREE.PerspectiveCamera(10, window.innerWidth / window.innerHeight, 0.1, 20)
-      this_.camera.position.set(-30, 5, 0)
+      this_.camera.position.set(-30, 5, 12)
       this_.scene = new THREE.Scene()
 
       // this_.scene.add(new AxesHelper())
@@ -60,7 +60,7 @@ export default( {
 
       this_.renderer = new THREE.WebGLRenderer({antialias: true,  alpha: true})
       this_.renderer.setPixelRatio(window.devicePixelRatio)
-      this_.renderer.setSize(1100, 650)
+      this_.renderer.setSize(1200, 650)
       this_.renderer.toneMapping = THREE.ACESFilmicToneMapping
       this_.renderer.toneMappingExposure = 1
       this_.renderer.outputEncoding = THREE.sRGBEncoding

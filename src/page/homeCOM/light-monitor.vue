@@ -35,7 +35,7 @@
 
             </div>
 
-            <div class="bottom" style=" height:400px;">
+            <div class="bottom" style=" height:390px;">
                    <c1-com ref="c1"></c1-com >
             </div>
 
@@ -106,10 +106,49 @@ export default {
               response.forEach(function(val, index, arr){
                    that.$refs[val.ref].data = val.data;
               });
-          that.$refs["r3"].data = {
-            "title": "视频的名字",
-            "src": "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8"
+
+          that.$refs["r4"].data ={
+            "list": [
+              {
+                "state": 0,
+                "time": new Date(),
+                "content": "数据传输开启",
+                "equipment": "设备在线"
+              },  {
+                "state": 1,
+                "time": new Date(),
+                "content": "数据传输开启",
+                "equipment": "设备离线"
+              },
+                {
+                  "state": 2,
+                  "time": new Date(),
+                  "content": "数据传输关闭",
+                  "equipment": "设备离线"
+                }
+            ]
           };
+
+          that.$refs["r3"].data = {
+            "title": "监控2",
+            "src": "http://localhost:20000/hls/test1.m3u8"
+          };
+          that.$refs["r2"].data = {
+            "title": "监控2",
+            "src": "http://localhost:20000/hls/test2.m3u8"
+          };
+
+          that.$refs["r1"].data =  {
+            "h": "49%",
+                "t": "23°C",
+                "light": "55",
+                "windDirection": "西南方",
+                "windSpeed": "20KM/H",
+                "pm": "80",
+                "icon": "http://www.jingxing-iot.com/static/sun.png"
+          }
+
+
               that.loading = false;
       })
       this.timer();

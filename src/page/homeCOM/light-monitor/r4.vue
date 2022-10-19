@@ -1,11 +1,7 @@
 <template>
     <div class="boxbg"  style="position: relative;">
         <div class="title"><span>故障告警信息</span></div>
-        <i class="i1"></i>
-        <i class="i2"></i>
-        <i class="i3"></i>
-        <i class="i4"></i>
-      
+
         <div class="c flex">
                <el-carousel  style="width:100%; height:100%" indicator-position="none"  direction="vertical">
                 <el-carousel-item v-for="(item,index) in this.arrayGroup(data.list, 2)" :key="index">
@@ -42,7 +38,7 @@
             }
         },
         data () {
-            return {  
+            return {
                 data:{
                     list:[]
                 }
@@ -50,7 +46,7 @@
         },
 
         methods: {
-    
+
         },
         mounted () {
             //let Array = [{a:1},{a:2},{a:3},{a:4},{a:5}];

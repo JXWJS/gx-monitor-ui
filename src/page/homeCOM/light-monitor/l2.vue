@@ -1,7 +1,7 @@
 <template>
   <div class="boxbg" style="position: relative;">
     <div class="title">
-      <span>资产统计信息</span>
+      <span>参数信息</span>
     </div>
     <i class="i1"></i>
     <i class="i2"></i>
