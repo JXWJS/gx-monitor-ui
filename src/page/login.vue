@@ -1,7 +1,7 @@
 <template>
 <div class="loginbox">
 <div class="boxbg">
-        <div class="title bgbg"><span>广西职业技术学院激光熔覆工作站</span></div>
+        <div class="title bgbg"><span>西安热工研究院有限公司</span></div>
         <i class="i1"></i>
         <i class="i2"></i>
         <i class="i3"></i>

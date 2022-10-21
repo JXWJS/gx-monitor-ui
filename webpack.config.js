@@ -26,7 +26,12 @@ module.exports = (options = {}) => ({
       },
       {
         test: /\.js$/,
-        use: ['babel-loader'],
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015']
+          }
+        }],
         include: [
           resolve('src'),
           resolve('test'),
@@ -38,7 +43,11 @@ module.exports = (options = {}) => ({
           resolve('node_modules/vue-audio-visual/src/components/AvCircle.js'),
           resolve('node_modules/vue-audio-visual/src/components/AvLine.js'),
           resolve('node_modules/vue-audio-visual/src/components/AvMedia.js'),
-          resolve('node_modules/vue-audio-visual/src/components/AvWaveform.js')
+          resolve('node_modules/vue-audio-visual/src/components/AvWaveform.js'),
+          resolve('node_modules/three/build/three.module.js'),
+          resolve('node_modules/three/examples/jsm/controls/OrbitControls.js'),
+          resolve('node_modules/three/examples/jsm/environments/RoomEnvironment.js'),
+          resolve('node_modules/three/examples/jsm/loaders/GLTFLoader.js')
         ]
       },
       {

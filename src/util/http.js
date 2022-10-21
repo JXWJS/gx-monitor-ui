@@ -4,7 +4,7 @@ import { Message } from 'element-ui';
 import router from '../router/index.js';
 import store from '../vuex/store.js';
 
-axios.defaults.baseURL = "https://getman.cn/"
+axios.defaults.baseURL = "http://192.168.0.167:20000/"
 
 
 // 跨域相关
@@ -16,11 +16,11 @@ axios.defaults.timeout = 8000;
 // post请求头
 //axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
-/** 
- * 提示函数 
+/**
+ * 提示函数
  * 禁止点击蒙层、显示一秒后关闭
  */
-const tip = msg => {    
+const tip = msg => {
   Message({
     showClose: true,
     message: msg,
@@ -28,7 +28,7 @@ const tip = msg => {
   });
 }
 
-/** 
+/**
  * 跳转登录页
  * 携带当前页面路由，以期在登录页面完成登录后返回当前页面
  */
@@ -38,8 +38,8 @@ const toLogin = () => {
   });
 }
 
-/** 
- * 请求失败后的错误统一处理 
+/**
+ * 请求失败后的错误统一处理
  */
 const errorHandle = (data) => {
 }
@@ -49,7 +49,7 @@ const errorHandle = (data) => {
 axios.interceptors.request.use(
   config => {
     config.headers = {'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}
-    config.params = {'token':store.state.token}
+    // config.params = {'token':store.state.token}
     return config;
   },
   error => {
@@ -60,11 +60,11 @@ axios.interceptors.request.use(
 
 //http response 拦截器
 axios.interceptors.response.use(
-  res => res.status === 200 ? Promise.resolve(res): Promise.reject(res),  
+  res => res.status === 200 ? Promise.resolve(res): Promise.reject(res),
   error => {
     const { response } = error;
     if (response) {
-        // 请求已发出，但是不在2xx的范围 
+        // 请求已发出，但是不在2xx的范围
         return Promise.reject(response);
     } else {
         tip("服务器连接失败");
@@ -74,7 +74,7 @@ axios.interceptors.response.use(
 )
 
 
- 
+
 /**
  * 封装post请求
  * @param url
@@ -83,7 +83,7 @@ axios.interceptors.response.use(
  */
  export function post(url,data = {}){
    return new Promise((resolve,reject) => {
-     axios.post(url,data)
+     axios.get(url,data)
           .then(response => {
             resolve(response.data);
           },err => {
@@ -91,4 +91,4 @@ axios.interceptors.response.use(
       })
     })
  }
- 
+

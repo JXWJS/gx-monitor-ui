@@ -7,9 +7,9 @@
                 <el-carousel-item v-for="(item,index) in this.arrayGroup(data.list, 2)" :key="index">
                     <div v-for="(item2,index2) in item" :key="index2" class="ww flex">
                         <div class="wwl flex center">
-                            <img src="~@/../static/wr0.png" width="45" height="45" v-if="item2.state==0">
-                            <img src="~@/../static/wr1.png" width="45" height="45" v-if="item2.state==1">
-                            <img src="~@/../static/wr2.png" width="45" height="45" v-if="item2.state==2">
+                            <img src="~@/../static/wr0.png" width="45" height="40" v-if="item2.state==0">
+                            <img src="~@/../static/wr1.png" width="45" height="40" v-if="item2.state==1">
+                            <img src="~@/../static/wr2.png" width="45" height="40" v-if="item2.state==2">
                         </div>
                         <div  class="wwr flex flex1 flexc" style=" justify-content: center; color:#00caff">
                             <div class="flex" style="justify-content: space-between;">
@@ -58,7 +58,7 @@
 <style scoped>
 .ww{width: 100%; height: 80px; background: rgba(0,6,255,0.3); margin-bottom: 10px;}
 
-.wwl{width: 80px;min-width: 80px; max-width: 80px;height: 80px;}
-.wwr{padding:10px; padding-left:0;  }
+.wwl{width: 80px;min-width: 80px; max-width: 80px;height: 70px;}
+.wwr{padding:1px; padding-left:0;  height: 70px;}
 </style>
 

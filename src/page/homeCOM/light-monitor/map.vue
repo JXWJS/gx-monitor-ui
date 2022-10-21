@@ -44,7 +44,7 @@ export default( {
 
       // model
       new GLTFLoader()
-          .setPath('/static/model/')
+          .setPath('~@/../static/model/')
           .load('arm8.gltf', function (gltf) {
             gltf.scene.scale.set(1,1.1,1.2)
             this_.scene.add(gltf.scene)
@@ -100,6 +100,13 @@ export default( {
         this.robot_J5.rotation.x += 0.001
         this.robot_J6.rotation.z += 0.001
         this.robot_J7.rotation.z += 0.001
+
+        // this.robot_J2.rotation.z = 10.07
+        // this.robot_J3.rotation.y = 2.56
+        // this.robot_J4.rotation.y = -61.62
+        // this.robot_J5.rotation.x = -9.43
+        // this.robot_J6.rotation.z = 61.28
+        // this.robot_J7.rotation.z = 9.52
 
       }
       this_.controls.update() // required if damping enabled

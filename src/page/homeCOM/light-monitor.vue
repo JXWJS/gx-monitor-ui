@@ -7,7 +7,7 @@
                     <div class="year">{{getNowFormatDate()}}<br>{{getWeekDay()}}</div>
                     <div class="time">{{time}}</div>
                 </div>
-              <div class="c"><h1 style="color: #01acff">广西职业技术学院激光熔覆工作站</h1></div>
+              <div class="c"><h1 style="color: #01acff">自动化堵管在线检测系统</h1></div>
                 <div class="l">
                   <el-breadcrumb separator-class="el-icon-arrow-right">
                     <el-breadcrumb-item  style="color:#029bd6" v-for="item in city">{{item}}</el-breadcrumb-item>
@@ -35,7 +35,7 @@
 
             </div>
 
-            <div class="bottom" style=" height:390px;">
+            <div class="bottom" style=" height:390px;margin-top:20px">
                    <c1-com ref="c1"></c1-com >
             </div>
 
@@ -47,21 +47,22 @@
 
       <div class="right">
 
-                <div  style="width:480px; height:200px; margin-top:80px">
+                <div  style="width:480px; height:115px; margin-top:80px">
+                    <r4-com ref="r4"></r4-com >
+                </div>
+                <div  style="width:480px; height:180px;margin-top:5px">
                     <r1-com ref="r1"></r1-com >
                 </div>
 
-                 <div  style="width:480px; height:314px; margin-top:20px">
+                 <div  style="width:480px; height:320px; margin-top:20px">
                     <r2-com ref="r2"></r2-com >
                 </div>
 
-                <div  style="width:480px; height:314px; margin-top:20px">
+                <div  style="width:480px; height:320px; margin-top:20px">
                     <r3-com ref="r3"></r3-com >
                 </div>
 
-                <div  style="width:480px; height:230px; margin-top:20px">
-                    <r4-com ref="r4"></r4-com >
-                </div>
+
 
             </div>
 
@@ -94,32 +95,105 @@ export default {
     return {
         time:'',
         loading:false,
-        city:[]
+        city: [ "西安市", "阎良区", "长空路" ]
     }
   },
   mounted () {
       let that = this;
       that.loading = true;
-      this.$post('mock/getDatazx',{})
+      this.$post('data.html',{})
         .then((response) => {
-            //获取总数据分配给每个模块   http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4
-              response.forEach(function(val, index, arr){
-                   that.$refs[val.ref].data = val.data;
-              });
+          console.log(response.status)
+          let arr = response.split("1:")[1].split("Frame")[0].split("Joint ");
+          console.log(parseFloat(arr[0]))
+          console.log(parseFloat(arr[1].split("2:")[1]))
+          console.log(parseFloat(arr[2].split("3:")[1]))
+          console.log(parseFloat(arr[3].split("4:")[1]))
+          console.log(parseFloat(arr[4].split("5:")[1]))
+          console.log(parseFloat(arr[5].split("6:")[1]))
+
+          that.$refs["l1"].data = {
+            "list": [
+              {
+                "title": "激光功率",
+                "total": 2000,
+                "num": 1055,
+                "percentage": 20,
+                "unit": "w/h"
+              },
+              {
+                "title": "机器人速度",
+                "total": 20,
+                "num": 3,
+                "percentage": 20,
+                "unit": "m/s"
+              },
+              {
+                "title": "粉桶2速率",
+                "total": 20,
+                "num": 3,
+                "percentage": 20,
+                "unit": "m/s"
+              }
+            ]
+          }
+
+          that.$refs["l2"].data = {
+            "columns": [
+            "name",
+            "num"
+          ],
+              "rows": [
+            {
+              "name": "A类合杆",
+              "num": 1234
+            },
+            {
+              "name": "B类合杆",
+              "num": 556
+            }
+          ]
+          }
+
+          that.$refs["l3"].data = {
+            "columns": [
+              "time",
+              "kwh"
+            ],
+            "rows": [
+              {
+                "time": "1/1",
+                "kwh": 93
+              },
+              {
+                "time": "1/2",
+                "kwh": 899
+              },
+              {
+                "time": "1/3",
+                "kwh": 99
+              },
+              {
+                "time": "1/4",
+                "kwh": 399
+              }
+            ]
+          }
+
 
           that.$refs["r4"].data ={
             "list": [
-              {
-                "state": 0,
-                "time": new Date(),
-                "content": "数据传输开启",
-                "equipment": "设备在线"
-              },  {
-                "state": 1,
-                "time": new Date(),
-                "content": "数据传输开启",
-                "equipment": "设备离线"
-              },
+              // {
+              //   "state": 0,
+              //   "time": new Date(),
+              //   "content": "数据传输开启",
+              //   "equipment": "设备在线"
+              // },  {
+              //   "state": 1,
+              //   "time": new Date(),
+              //   "content": "数据传输开启",
+              //   "equipment": "设备离线"
+              // },
                 {
                   "state": 2,
                   "time": new Date(),
@@ -145,7 +219,7 @@ export default {
                 "windDirection": "西南方",
                 "windSpeed": "20KM/H",
                 "pm": "80",
-                "icon": "http://www.jingxing-iot.com/static/sun.png"
+                "icon": "~@/../static/sun.png"
           }
 
 
@@ -161,6 +235,12 @@ export default {
   },
   destroyed() {
     clearInterval(this.timer)
+  },
+  getDataByPLC() {
+    this.$get('mock/getDatazx',{})
+        .then((response) => {
+
+        })
   }
 }
 </script>
