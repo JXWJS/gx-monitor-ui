@@ -1,7 +1,10 @@
 <template>
     <div class="boxbg"  style="position: relative;">
         <div class="title"><span>故障告警信息</span></div>
-
+      <i class="i1"></i>
+      <i class="i2"></i>
+      <i class="i3"></i>
+      <i class="i4"></i>
         <div class="c flex">
                <el-carousel  style="width:100%; height:100%" indicator-position="none"  direction="vertical">
                 <el-carousel-item v-for="(item,index) in this.arrayGroup(data.list, 2)" :key="index">
@@ -17,7 +20,8 @@
                                 <span style="color:#65a6ff">[{{ item2.equipment }}]</span>
                             </div>
                             <div style="margin-top:7px;">
-                                <span v-if="item2.content.length<=23">{{ item2.content}}</span>
+                              <marquee><span v-if="item2.content.length<=23">{{ item2.content}}</span></marquee>
+
                                 <!-- <span>{{ item2.content}}</span> -->
                                 <marquee direction="left" scrollamount="10" v-if="item2.content.length>23" :interval="5000">{{ item2.content }}</marquee>
                             </div>

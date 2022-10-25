@@ -58,11 +58,12 @@
     methods: {
       onSubmit() {
         this.loading = true;
-        this.$post('mock/login',this.form)
-        .then((response) => {
-             this.$store.commit("changeToken",response.token);
-             this.$router.push({ path: '/home/1' })
-        })
+        this.$router.push({ path: '/home/1' })
+        // this.$post('mock/login',this.form)
+        // .then((response) => {
+        //      this.$store.commit("changeToken",response.token);
+        //      this.$router.push({ path: '/home/1' })
+        // })
       }
     }
   }

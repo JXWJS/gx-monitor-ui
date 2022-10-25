@@ -1,14 +1,18 @@
 <template>
   <div class="boxbg"  style="position: relative;">
     <div class="title"><span>三维场景</span></div>
+    <i class="i1"></i>
+    <i class="i2"></i>
+    <i class="i3"></i>
+    <i class="i4"></i>
 
     <div class="elem">
-      <img id="viedo-canvas1" src="~@/../static/camera/IM000001.jpg" style="width: 100%;max-height: 300px;margin-top: 5px">
+      <img id="viedo-canvas1" src="~@/../static/camera/IM000001.jpg" style="width: 100%;max-height: 270px;margin-top: 5px;margin-left: 10px;">
       <span style="position: absolute; bottom: 280px; left: 330px;color: white">3D Camera</span>
     </div>
 
     <div class="elem">
-      <img id="viedo-canvas2" src="~@/../static/camera/IM000002.jpg" style="width: 100%;max-height: 300px;margin-top: 5px">
+      <img id="viedo-canvas2" src="~@/../static/camera/IM000002.jpg" style="width: 100%;max-height: 270px;margin-top: 5px;margin-left: 10px;">
       <span style="position: absolute; bottom: 280px; left: 820px;color: white">定位</span>
     </div>
   </div>

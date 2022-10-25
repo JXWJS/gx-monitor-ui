@@ -10,11 +10,12 @@
               <div class="c"><h1 style="color: #01acff">自动化堵管在线检测系统</h1></div>
                 <div class="l">
                   <el-breadcrumb separator-class="el-icon-arrow-right">
-                    <el-breadcrumb-item  style="color:#029bd6" v-for="item in city">{{item}}</el-breadcrumb-item>
+                    <el-breadcrumb-item  style="color:#029bd6" v-for="item in city" :key = "item" >{{item}}</el-breadcrumb-item>
                   </el-breadcrumb>
                 </div>
 
             </div>
+
 
 
 
@@ -35,13 +36,15 @@
 
             </div>
 
-            <div class="bottom" style=" height:390px;margin-top:20px">
-                   <c1-com ref="c1"></c1-com >
-            </div>
+<div class="center">
+  <div class="top" style="margin-top:60px">
+    <map-com ref="map"></map-com>
+  </div>
 
-        <div class="top">
-          <map-com ref="map"></map-com>
-        </div>
+  <div class="bottom" style=" height:360px;margin-top:20px">
+    <c1-com ref="c1"></c1-com >
+  </div>
+</div>
 
 
 
@@ -103,7 +106,7 @@ export default {
       that.loading = true;
       this.$post('data.html',{})
         .then((response) => {
-          console.log(response.status)
+
           let arr = response.split("1:")[1].split("Frame")[0].split("Joint ");
           console.log(parseFloat(arr[0]))
           console.log(parseFloat(arr[1].split("2:")[1]))
@@ -111,6 +114,26 @@ export default {
           console.log(parseFloat(arr[3].split("4:")[1]))
           console.log(parseFloat(arr[4].split("5:")[1]))
           console.log(parseFloat(arr[5].split("6:")[1]))
+
+          that.$refs["l2"].data = {
+            "title": "监控1",
+            "src": "http://localhost:20000/hls/test1.m3u8"
+          };
+          that.$refs["l3"].data = {
+            "title": "监控2",
+            "src": "http://localhost:20000/hls/test2.m3u8"
+          };
+          that.$refs["r2"].data = {
+            "title": "监控3",
+            "src": "http://localhost:20000/hls/test3.m3u8"
+          };
+          that.$refs["r3"].data = {
+            "title": "监控4",
+            "src": "http://localhost:20000/hls/test4.m3u8"
+          };
+
+
+
 
           that.$refs["l1"].data = {
             "list": [
@@ -129,6 +152,13 @@ export default {
                 "unit": "m/s"
               },
               {
+                "title": "粉桶1速率",
+                "total": 20,
+                "num": 3,
+                "percentage": 20,
+                "unit": "m/s"
+              },
+              {
                 "title": "粉桶2速率",
                 "total": 20,
                 "num": 3,
@@ -138,47 +168,47 @@ export default {
             ]
           }
 
-          that.$refs["l2"].data = {
-            "columns": [
-            "name",
-            "num"
-          ],
-              "rows": [
-            {
-              "name": "A类合杆",
-              "num": 1234
-            },
-            {
-              "name": "B类合杆",
-              "num": 556
-            }
-          ]
-          }
-
-          that.$refs["l3"].data = {
-            "columns": [
-              "time",
-              "kwh"
-            ],
-            "rows": [
-              {
-                "time": "1/1",
-                "kwh": 93
-              },
-              {
-                "time": "1/2",
-                "kwh": 899
-              },
-              {
-                "time": "1/3",
-                "kwh": 99
-              },
-              {
-                "time": "1/4",
-                "kwh": 399
-              }
-            ]
-          }
+          // that.$refs["l2"].data = {
+          //   "columns": [
+          //   "name",
+          //   "num"
+          // ],
+          //     "rows": [
+          //   {
+          //     "name": "A类合杆",
+          //     "num": 1234
+          //   },
+          //   {
+          //     "name": "B类合杆",
+          //     "num": 556
+          //   }
+          // ]
+          // }
+          //
+          // that.$refs["l3"].data = {
+          //   "columns": [
+          //     "time",
+          //     "kwh"
+          //   ],
+          //   "rows": [
+          //     {
+          //       "time": "1/1",
+          //       "kwh": 93
+          //     },
+          //     {
+          //       "time": "1/2",
+          //       "kwh": 899
+          //     },
+          //     {
+          //       "time": "1/3",
+          //       "kwh": 99
+          //     },
+          //     {
+          //       "time": "1/4",
+          //       "kwh": 399
+          //     }
+          //   ]
+          // }
 
 
           that.$refs["r4"].data ={
@@ -201,15 +231,6 @@ export default {
                   "equipment": "设备离线"
                 }
             ]
-          };
-
-          that.$refs["r3"].data = {
-            "title": "监控2",
-            "src": "http://localhost:20000/hls/test1.m3u8"
-          };
-          that.$refs["r2"].data = {
-            "title": "监控2",
-            "src": "http://localhost:20000/hls/test2.m3u8"
           };
 
           that.$refs["r1"].data =  {

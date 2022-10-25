@@ -5,7 +5,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 import router from './router/index'
 import store from './vuex/store'
-
+// main.js
+import * as echarts from "echarts"
+Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI, { size: 'small'});
 
@@ -20,7 +22,7 @@ Vue.use(AudioVisual)
  ///数据请求
 import {post} from './util/http'
 Vue.prototype.$post=post;
- 
+
 ///表格
 import ZxTable from "./components/table/index.js"
 Vue.use(ZxTable)

@@ -1,99 +1,72 @@
 <template>
-  <div class="boxbg" style="position: relative;">
-    <div class="title">
-      <span>参数信息</span>
-    </div>
+  <div class="boxbg"  style="position: relative;">
+    <div class="title"><span>安防监控情况</span></div>
     <i class="i1"></i>
     <i class="i2"></i>
     <i class="i3"></i>
     <i class="i4"></i>
+    <div class="po"  v-if="show"><span style="padding-right:5px;">{{data.title}}</span></div>
+    <div class="c flex ">
 
-    <div class="c flex flexc">
-      <div class="flex flex1">
-        <ve-ring
-          :data="data"
-          :settings="chartSettings"
-          :legend-visible="false"
-          width="100%"
-          height="100%"
-          :colors="colors"
-        ></ve-ring>
-      </div>
-      <div class="pp">
-        <el-row :gutter="10" style="width:100%">
-          <el-col :span="8" v-for="(item,index) in data.rows" :key="index">
-            <div class="flex center">
-                <div class="cs" :style="'background-color:'+colors[index]"></div>
-                <span style="color:#fff;padding:0 10px;" >{{item.name}}</span>
-                <span style="color:#28f1dc">{{item.num}}</span>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
+      <video-player  class="video-player vjs-custom-skin" style="width:100%; height:100%"
+                     ref="videoPlayer"
+                     :playsinline="true"
+                     :options="playerOptions"
+                     autoplay
+                     v-if="show"
+      ></video-player>
     </div>
+
   </div>
 </template>
 <script>
-var that;
-export default {
-   watch:{
 
-   },
-  data() {
-    this.chartSettings = {
-      radius: [50, 90],
-      offsetY: 110,
-      label: {
-        normal: {
-          show: true,
-          lineHeight: 24,
-          color: "#fff",
-          textStyle: {
-            fontSize: "18",
-            fontWeight: "bold"
-          },
-          //formatter: "1111%"
-          formatter: "{b}\n{d}%"
-        }
-      }
-    };
-    this.colors = ["#01ff74", "#fab806", "#0199ff"];
+export default {
+
+  watch:{
+    data(newValue,oldValue){
+      ///console.log(newValue.src)
+      this.playerOptions.sources[0].src = newValue.src
+      this.show = true
+    }
+  },
+  data(){
     return {
-      theme: {
-        grid: {
-          left: "7%",
-          right: "18",
-          bottom: "20",
-          top: "0"
-        }
-      },
-      data: {
-          columns: ["name", "num"],
-          rows: [
-            //  {
-            //         "name": "A类合杆",
-            //         "num": 1234
-            //     },
-            //     {
-            //         "name": "B类合杆",
-            //         "num": 556
-            //     },
-            //     {
-            //         "name": "C类合杆",
-            //         "num": 894
-            //     }
-          ],
+      show:false,
+      data:{title:''},
+      title:"123",
+      playerOptions:{
+        playbackRates: [0.7, 1.0, 1.5, 2.0], //播放速度
+        autoplay: true, //如果true,浏览器准备好时开始回放。
+        muted: true, // 默认情况下将会消除任何音频。
+        loop: true, // 导致视频一结束就重新开始。
+        preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+        language: 'zh-CN',
+        aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+        // fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+        sources: [{
+          type: "application/x-mpegURL",//这里的种类支持很多种：基本视频格式、直播、流媒体等，具体可以参看git网址项目
+          src: "https://sample-videos.com/video123/flv/720/big_buck_bunny_720p_1mb.flv" //url地址
+        }],
+        hls:true, //如果是播放m3u8必须加（需注释掉techOrder,不然会有报错）
+        ///techOrder: ['flash'], //播放rtmp必须加
+        poster: "", //你的封面地址
+        notSupportedMessage: '此视频暂无法播放，请稍后再试', //允许覆盖Video.js无法播放媒体源时显示的默认信息。
       }
-    };
+    }
   },
 
-  methods: {},
-  mounted() {}
-};
+  methods: {
+
+  },
+  mounted () {
+
+  },
+}
 </script>
 
 <style scoped>
-.cs{width:15px; height:15px;}
-.pp{position: absolute; left: 0; bottom: 0; width: 100%;}
+.pr{position: relative;}
+.po{position: absolute; width: calc(100% - 20px);; height: 30px;  background: linear-gradient(to right, rgba(1,6,124,0) 0%,  rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%); left: 10px; top: 45px; z-index: 9; display: flex; align-items: center; justify-content: flex-end;color: #fff;}
 </style>
 
