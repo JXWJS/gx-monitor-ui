@@ -33,7 +33,36 @@
         data () {
             return {
                 data:{
-                    list:[]
+                    list:[
+                      {
+                        "title": "激光功率",
+                        "total": 2000,
+                        "num": 1055,
+                        "percentage": 20,
+                        "unit": "w/h"
+                      },
+                      {
+                        "title": "机器人速度",
+                        "total": 20,
+                        "num": 3,
+                        "percentage": 20,
+                        "unit": "m/s"
+                      },
+                      {
+                        "title": "粉桶1速率",
+                        "total": 20,
+                        "num": 3,
+                        "percentage": 20,
+                        "unit": "m/s"
+                      },
+                      {
+                        "title": "粉桶2速率",
+                        "total": 20,
+                        "num": 3,
+                        "percentage": 20,
+                        "unit": "m/s"
+                      }
+                    ]
                 },
             }
         },

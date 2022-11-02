@@ -15,6 +15,9 @@ module.exports = (options = {}) => ({
     filename: options.dev ? 'js/[name].js' : 'js/[name].js?[chunkhash]',
     chunkFilename: 'js/[id].js?[chunkhash]',
   },
+  node: {
+    fs: 'empty'
+  },
   externals: {
     // 'video.js': 'videojs',
     // 'flv.js': 'flvjs'
@@ -47,7 +50,9 @@ module.exports = (options = {}) => ({
           resolve('node_modules/three/build/three.module.js'),
           resolve('node_modules/three/examples/jsm/controls/OrbitControls.js'),
           resolve('node_modules/three/examples/jsm/environments/RoomEnvironment.js'),
-          resolve('node_modules/three/examples/jsm/loaders/GLTFLoader.js')
+          resolve('node_modules/three/examples/jsm/loaders/GLTFLoader.js'),
+          resolve('node_modules/three/examples/jsm/loaders/RGBELoader.js')
+
         ]
       },
       {

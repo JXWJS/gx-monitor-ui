@@ -4,7 +4,7 @@ import { Message } from 'element-ui';
 import router from '../router/index.js';
 import store from '../vuex/store.js';
 
-axios.defaults.baseURL = "http://192.168.1.20:20000/"
+axios.defaults.baseURL = "http://localhost:20000/"
 
 
 // 跨域相关

@@ -29,7 +29,13 @@ export default( {
       controls: null,
       container: null,
       myChart: null,
-      dataList: null
+      dataList: null,
+      J1: "",
+      J2: "",
+      J3: "",
+      J4: "",
+      J5: "",
+      J6: "",
     }
   },
   watch:{
@@ -41,7 +47,8 @@ export default( {
     this.$nextTick( () => {
       document.getElementById('test1').appendChild(this.container)
     })
-    setInterval(this.initCharts, 2000);
+    setInterval(this.initCharts, 1000);
+    this.test()
   },
   methods: {
     init () {
@@ -51,7 +58,6 @@ export default( {
       this_.camera = new THREE.PerspectiveCamera(10, window.innerWidth / window.innerHeight, 0.1, 20)
       this_.camera.position.set(-30, 5, -12)
       this_.scene = new THREE.Scene()
-
 
       // this_.scene.add(new AxesHelper())
 
@@ -120,24 +126,12 @@ export default( {
       requestAnimationFrame(this.animate)
 
       if(this.robot_J5!==undefined) {
-        this.robot_J2.rotation.z += 0.01
-        this.robot_J3.rotation.y -= 0.001
-        this.robot_J4.rotation.y += 0.001
-        this.robot_J5.rotation.x -= 0.01
-        this.robot_J6.rotation.z += 0.1
-        this.robot_J7.rotation.z += 0.001
-
-        // this.$post('data.html',{})
-        //     .then((response) => {
-        //
-        //       let arr = response.split("1:")[1].split("Frame")[0].split("Joint ");
-        //       this.robot_J2.rotation.z = parseFloat(arr[0])
-        //       this.robot_J3.rotation.y = parseFloat(arr[1].split("2:")[1])
-        //       this.robot_J4.rotation.y = parseFloat(arr[2].split("3:")[1])
-        //       this.robot_J5.rotation.x = parseFloat(arr[3].split("4:")[1])
-        //       this.robot_J6.rotation.z = parseFloat(arr[4].split("5:")[1])
-        //       this.robot_J7.rotation.z = parseFloat(arr[5].split("6:")[1])
-
+        this.robot_J2.rotation.z = this_.J1
+        this.robot_J3.rotation.y = this_.J2
+        this.robot_J4.rotation.y = this_.J3
+        this.robot_J5.rotation.x = this_.J4
+        this.robot_J6.rotation.z = this_.J5
+        this.robot_J7.rotation.z = this_.J6
 
         this_.dataList = [this.robot_J2.rotation.z,this.robot_J3.rotation.y ,this.robot_J4.rotation.y ,
           this.robot_J5.rotation.x ,
@@ -146,15 +140,28 @@ export default( {
 
       }
 
-            // )}
-
-
       this_.controls.update() // required if damping enabled
       this.render()
     },
     render () {
       let this_ = this
       this_.renderer.render(this_.scene, this_.camera)
+    },
+
+    test() {
+      let this_ = this
+      setInterval(function (){
+        this_.$post('data.html',{})
+            .then((response) => {
+              let arr = response.split("1:")[1].split("Frame")[0].split("Joint ");
+              this_.J1 = parseFloat(arr[0])
+              this_.J2 = parseFloat(arr[1].split("2:")[1])
+              this_.J3 = parseFloat(arr[2].split("3:")[1])
+              this_.J4 = parseFloat(arr[3].split("4:")[1])
+              this_.J5 = parseFloat(arr[4].split("5:")[1])
+              this_.J6 = parseFloat(arr[5].split("6:")[1])
+            })
+      }, 1000);
     },
 
     initCharts() {

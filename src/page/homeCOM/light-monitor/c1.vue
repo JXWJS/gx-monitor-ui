@@ -8,12 +8,12 @@
 
     <div class="elem">
       <img id="viedo-canvas1" src="~@/../static/camera/IM000001.jpg" style="width: 100%;max-height: 270px;margin-top: 5px;margin-left: 10px;">
-      <span style="position: absolute; bottom: 280px; left: 330px;color: white">3D Camera</span>
+      <span style="position: absolute; bottom: 250px; left: 330px;color: white">3D Camera</span>
     </div>
 
     <div class="elem">
       <img id="viedo-canvas2" src="~@/../static/camera/IM000002.jpg" style="width: 100%;max-height: 270px;margin-top: 5px;margin-left: 10px;">
-      <span style="position: absolute; bottom: 280px; left: 820px;color: white">定位</span>
+      <span style="position: absolute; bottom: 250px; left: 820px;color: white">定位</span>
     </div>
   </div>
 
@@ -36,7 +36,7 @@
         methods: {
           connect() {
             // eslint-disable-next-line no-undef
-            let socket = new ReconnectingWebSocket("ws://192.168.0.187:8081/websocket/img",null,{debug: true, reconnectInterval: 3000, maxReconnectAttempts: 2});
+            let socket = new ReconnectingWebSocket("ws://192.168.1.60:8081/websocket/img",null,{debug: true, reconnectInterval: 3000, maxReconnectAttempts: 2});
             const img1 = document.getElementById("viedo-canvas1");
             const img2 = document.getElementById("viedo-canvas2");
             socket.onerror = err => {
@@ -50,7 +50,7 @@
               console.log(mess.data);
               let address = mess.data.split(";");
               if (address[0] === "0"){
-                img1.src = 'data:image/png;base64,' + address[0];
+                img1.src = 'data:image/png;base64,' + address[1];
               }else if (address[0] === "1"){
                 img2.src = 'data:image/png;base64,' + address[1];
               }

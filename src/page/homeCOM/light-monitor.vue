@@ -91,6 +91,7 @@ import r1Com from "./light-monitor/r1.vue"
 import r2Com from "./light-monitor/r2.vue"
 import r3Com from "./light-monitor/r3.vue"
 import r4Com from "./light-monitor/r4.vue"
+import axios from "axios";
 
 export default {
   components: {mapCom,l1Com,l2Com,l3Com,c1Com,r1Com,r2Com,r3Com,r4Com},
@@ -104,32 +105,51 @@ export default {
   mounted () {
       let that = this;
       that.loading = true;
-      this.$post('data.html',{})
-        .then((response) => {
 
-          let arr = response.split("1:")[1].split("Frame")[0].split("Joint ");
-          console.log(parseFloat(arr[0]))
-          console.log(parseFloat(arr[1].split("2:")[1]))
-          console.log(parseFloat(arr[2].split("3:")[1]))
-          console.log(parseFloat(arr[3].split("4:")[1]))
-          console.log(parseFloat(arr[4].split("5:")[1]))
-          console.log(parseFloat(arr[5].split("6:")[1]))
+
+      axios.get("http://192.168.1.99:80/MD/SUMMARY.DG?_TEMPLATE=FRS:SUMMTMPC",{})
+          .then(e =>{
+           if (e === undefined){
+             that.$refs["r4"].data ={
+               "list": [
+                 {
+                   "state": 2,
+                   "time": new Date(),
+                   "content": "数据传输关闭",
+                   "equipment": "设备离线"
+                 }
+               ]
+             };
+           }else {
+             that.$refs["r4"].data ={
+               "list": [
+                 {
+                   "state": 0,
+                   "time": new Date(),
+                   "content": "数据传输开启",
+                   "equipment": "设备在线"
+                 }
+               ]
+             };
+           }
+          })
+
 
           that.$refs["l2"].data = {
             "title": "监控1",
-            "src": "http://localhost:20000/hls/test1.m3u8"
+            "src": "http://localhost:8801/live/test1.flv"
           };
           that.$refs["l3"].data = {
             "title": "监控2",
-            "src": "http://localhost:20000/hls/test2.m3u8"
+            "src": "http://192.168.1.50:20000/hls/test2.m3u8"
           };
           that.$refs["r2"].data = {
             "title": "监控3",
-            "src": "http://localhost:20000/hls/test3.m3u8"
+            "src": "http://192.168.1.50:20000/hls/test3.m3u8"
           };
           that.$refs["r3"].data = {
             "title": "监控4",
-            "src": "http://localhost:20000/hls/test4.m3u8"
+            "src": "http://192.168.1.50:20000/hls/test4.m3u8"
           };
 
 
@@ -168,84 +188,30 @@ export default {
             ]
           }
 
-          // that.$refs["l2"].data = {
-          //   "columns": [
-          //   "name",
-          //   "num"
-          // ],
-          //     "rows": [
-          //   {
-          //     "name": "A类合杆",
-          //     "num": 1234
-          //   },
-          //   {
-          //     "name": "B类合杆",
-          //     "num": 556
-          //   }
-          // ]
-          // }
-          //
-          // that.$refs["l3"].data = {
-          //   "columns": [
-          //     "time",
-          //     "kwh"
-          //   ],
-          //   "rows": [
-          //     {
-          //       "time": "1/1",
-          //       "kwh": 93
-          //     },
-          //     {
-          //       "time": "1/2",
-          //       "kwh": 899
-          //     },
-          //     {
-          //       "time": "1/3",
-          //       "kwh": 99
-          //     },
-          //     {
-          //       "time": "1/4",
-          //       "kwh": 399
-          //     }
-          //   ]
-          // }
-
-
-          that.$refs["r4"].data ={
-            "list": [
-              // {
-              //   "state": 0,
-              //   "time": new Date(),
-              //   "content": "数据传输开启",
-              //   "equipment": "设备在线"
-              // },  {
-              //   "state": 1,
-              //   "time": new Date(),
-              //   "content": "数据传输开启",
-              //   "equipment": "设备离线"
-              // },
-                {
-                  "state": 2,
-                  "time": new Date(),
-                  "content": "数据传输关闭",
-                  "equipment": "设备离线"
+          that.$refs["r1"].data = {
+            "columns": [
+            "name",
+            "num"
+          ],
+              "rows": [
+            {
+              "name": "A类",
+              "num": 5
+            },
+            {
+              "name": "B类",
+              "num": 2
+            },{
+                  "name": "C类",
+                  "num": 3
                 }
-            ]
-          };
-
-          that.$refs["r1"].data =  {
-            "h": "49%",
-                "t": "23°C",
-                "light": "55",
-                "windDirection": "西南方",
-                "windSpeed": "20KM/H",
-                "pm": "80",
-                "icon": "~@/../static/sun.png"
+          ]
           }
 
 
+
+
               that.loading = false;
-      })
       this.timer();
   },
   methods: {
