@@ -36,7 +36,7 @@
         methods: {
           connect() {
             // eslint-disable-next-line no-undef
-            let socket = new ReconnectingWebSocket("ws://192.168.1.60:8081/websocket/img",null,{debug: true, reconnectInterval: 3000, maxReconnectAttempts: 2});
+            let socket = new ReconnectingWebSocket("ws://127.0.0.1:8081/websocket/img",null,{debug: true, reconnectInterval: 3000, maxReconnectAttempts: 2});
             const img1 = document.getElementById("viedo-canvas1");
             const img2 = document.getElementById("viedo-canvas2");
             socket.onerror = err => {

@@ -137,7 +137,7 @@ export default {
 
           that.$refs["l2"].data = {
             "title": "监控1",
-            "src": "http://localhost:8801/live/test1.flv"
+            "src": "http://localhost:8801/live/test2.m3u8"
           };
           that.$refs["l3"].data = {
             "title": "监控2",
@@ -228,6 +228,9 @@ export default {
         .then((response) => {
 
         })
+  },
+  index() {
+    this.$router.push({ path: '/' })
   }
 }
 </script>
